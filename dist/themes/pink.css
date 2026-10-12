@@ -1,0 +1,44 @@
+/*!
+ * Beak CSS theme — pink 🎨
+ * Palette override. Load *after* beak.css.
+ * Generated from Pico CSS v2.1.1 color "pink".
+ */
+@layer beak {
+/**
+ * Color schemes
+ */
+[data-theme=light],
+:root:not([data-theme=dark]),
+:host(:not([data-theme=dark])) {
+    --beak-text-selection-color: rgba(246, 84, 126, 0.25);
+    --beak-primary: #c72259;
+    --beak-primary-background: #d92662;
+    --beak-primary-underline: rgba(199, 34, 89, 0.5);
+    --beak-primary-hover: #9d1945;
+    --beak-primary-hover-background: #c72259;
+    --beak-primary-focus: rgba(246, 84, 126, 0.5);
+  }
+
+@media only screen and (prefers-color-scheme: dark) {
+  :root:not([data-theme]),
+    :host(:not([data-theme])) {
+      --beak-text-selection-color: rgba(247, 112, 142, 0.1875);
+      --beak-primary: #f7708e;
+      --beak-primary-background: #d92662;
+      --beak-primary-underline: rgba(247, 112, 142, 0.5);
+      --beak-primary-hover: #f99eae;
+      --beak-primary-hover-background: #f42c6f;
+      --beak-primary-focus: rgba(247, 112, 142, 0.375);
+    }
+}
+
+[data-theme=dark] {
+    --beak-text-selection-color: rgba(247, 112, 142, 0.1875);
+    --beak-primary: #f7708e;
+    --beak-primary-background: #d92662;
+    --beak-primary-underline: rgba(247, 112, 142, 0.5);
+    --beak-primary-hover: #f99eae;
+    --beak-primary-hover-background: #f42c6f;
+    --beak-primary-focus: rgba(247, 112, 142, 0.375);
+  }
+}

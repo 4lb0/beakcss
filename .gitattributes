@@ -1,4 +1,5 @@
 * text=auto eol=lf
 
-# Minified outputs are generated — keep them out of diffs/reviews by default
-dist/*.min.css linguist-generated=true -diff
+# Generated outputs — keep them out of diffs/reviews by default
+dist/*.min.css linguist-generated=true
+dist/themes/*.css linguist-generated=true

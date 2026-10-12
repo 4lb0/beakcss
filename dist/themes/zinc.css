@@ -1,0 +1,44 @@
+/*!
+ * Beak CSS theme — zinc 🎨
+ * Palette override. Load *after* beak.css.
+ * Generated from Pico CSS v2.1.1 color "zinc".
+ */
+@layer beak {
+/**
+ * Color schemes
+ */
+[data-theme=light],
+:root:not([data-theme=dark]),
+:host(:not([data-theme=dark])) {
+    --beak-text-selection-color: rgba(136, 145, 164, 0.25);
+    --beak-primary: #646b79;
+    --beak-primary-background: #646b79;
+    --beak-primary-underline: rgba(100, 107, 121, 0.5);
+    --beak-primary-hover: #4d535e;
+    --beak-primary-hover-background: #5c6370;
+    --beak-primary-focus: rgba(136, 145, 164, 0.5);
+  }
+
+@media only screen and (prefers-color-scheme: dark) {
+  :root:not([data-theme]),
+    :host(:not([data-theme])) {
+      --beak-text-selection-color: rgba(150, 158, 175, 0.1875);
+      --beak-primary: #969eaf;
+      --beak-primary-background: #646b79;
+      --beak-primary-underline: rgba(150, 158, 175, 0.5);
+      --beak-primary-hover: #b3b9c5;
+      --beak-primary-hover-background: #6f7887;
+      --beak-primary-focus: rgba(150, 158, 175, 0.375);
+    }
+}
+
+[data-theme=dark] {
+    --beak-text-selection-color: rgba(150, 158, 175, 0.1875);
+    --beak-primary: #969eaf;
+    --beak-primary-background: #646b79;
+    --beak-primary-underline: rgba(150, 158, 175, 0.5);
+    --beak-primary-hover: #b3b9c5;
+    --beak-primary-hover-background: #6f7887;
+    --beak-primary-focus: rgba(150, 158, 175, 0.375);
+  }
+}

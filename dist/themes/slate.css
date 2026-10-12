@@ -1,0 +1,44 @@
+/*!
+ * Beak CSS theme — slate 🎨
+ * Palette override. Load *after* beak.css.
+ * Generated from Pico CSS v2.1.1 color "slate".
+ */
+@layer beak {
+/**
+ * Color schemes
+ */
+[data-theme=light],
+:root:not([data-theme=dark]),
+:host(:not([data-theme=dark])) {
+    --beak-text-selection-color: rgba(129, 145, 181, 0.25);
+    --beak-primary: #5d6b89;
+    --beak-primary-background: #525f7a;
+    --beak-primary-underline: rgba(93, 107, 137, 0.5);
+    --beak-primary-hover: #48536b;
+    --beak-primary-hover-background: #48536b;
+    --beak-primary-focus: rgba(129, 145, 181, 0.5);
+  }
+
+@media only screen and (prefers-color-scheme: dark) {
+  :root:not([data-theme]),
+    :host(:not([data-theme])) {
+      --beak-text-selection-color: rgba(144, 158, 190, 0.1875);
+      --beak-primary: #909ebe;
+      --beak-primary-background: #525f7a;
+      --beak-primary-underline: rgba(144, 158, 190, 0.5);
+      --beak-primary-hover: #b0b9d0;
+      --beak-primary-hover-background: #5d6b89;
+      --beak-primary-focus: rgba(144, 158, 190, 0.375);
+    }
+}
+
+[data-theme=dark] {
+    --beak-text-selection-color: rgba(144, 158, 190, 0.1875);
+    --beak-primary: #909ebe;
+    --beak-primary-background: #525f7a;
+    --beak-primary-underline: rgba(144, 158, 190, 0.5);
+    --beak-primary-hover: #b0b9d0;
+    --beak-primary-hover-background: #5d6b89;
+    --beak-primary-focus: rgba(144, 158, 190, 0.375);
+  }
+}

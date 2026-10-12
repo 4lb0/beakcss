@@ -1,0 +1,44 @@
+/*!
+ * Beak CSS theme — fuchsia 🎨
+ * Palette override. Load *after* beak.css.
+ * Generated from Pico CSS v2.1.1 color "fuchsia".
+ */
+@layer beak {
+/**
+ * Color schemes
+ */
+[data-theme=light],
+:root:not([data-theme=dark]),
+:host(:not([data-theme=dark])) {
+    --beak-text-selection-color: rgba(247, 72, 183, 0.25);
+    --beak-primary: #c1208b;
+    --beak-primary-background: #c1208b;
+    --beak-primary-underline: rgba(193, 32, 139, 0.5);
+    --beak-primary-hover: #98176d;
+    --beak-primary-hover-background: #ac1c7c;
+    --beak-primary-focus: rgba(247, 72, 183, 0.5);
+  }
+
+@media only screen and (prefers-color-scheme: dark) {
+  :root:not([data-theme]),
+    :host(:not([data-theme])) {
+      --beak-text-selection-color: rgba(248, 105, 191, 0.1875);
+      --beak-primary: #f869bf;
+      --beak-primary-background: #c1208b;
+      --beak-primary-underline: rgba(248, 105, 191, 0.5);
+      --beak-primary-hover: #fa9acf;
+      --beak-primary-hover-background: #d9269d;
+      --beak-primary-focus: rgba(248, 105, 191, 0.375);
+    }
+}
+
+[data-theme=dark] {
+    --beak-text-selection-color: rgba(248, 105, 191, 0.1875);
+    --beak-primary: #f869bf;
+    --beak-primary-background: #c1208b;
+    --beak-primary-underline: rgba(248, 105, 191, 0.5);
+    --beak-primary-hover: #fa9acf;
+    --beak-primary-hover-background: #d9269d;
+    --beak-primary-focus: rgba(248, 105, 191, 0.375);
+  }
+}

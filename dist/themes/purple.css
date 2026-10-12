@@ -1,0 +1,44 @@
+/*!
+ * Beak CSS theme — purple 🎨
+ * Palette override. Load *after* beak.css.
+ * Generated from Pico CSS v2.1.1 color "purple".
+ */
+@layer beak {
+/**
+ * Color schemes
+ */
+[data-theme=light],
+:root:not([data-theme=dark]),
+:host(:not([data-theme=dark])) {
+    --beak-text-selection-color: rgba(205, 104, 224, 0.25);
+    --beak-primary: #aa40bf;
+    --beak-primary-background: #9236a4;
+    --beak-primary-underline: rgba(170, 64, 191, 0.5);
+    --beak-primary-hover: #802e90;
+    --beak-primary-hover-background: #802e90;
+    --beak-primary-focus: rgba(205, 104, 224, 0.5);
+  }
+
+@media only screen and (prefers-color-scheme: dark) {
+  :root:not([data-theme]),
+    :host(:not([data-theme])) {
+      --beak-text-selection-color: rgba(212, 125, 228, 0.1875);
+      --beak-primary: #d47de4;
+      --beak-primary-background: #9236a4;
+      --beak-primary-underline: rgba(212, 125, 228, 0.5);
+      --beak-primary-hover: #e2a3eb;
+      --beak-primary-hover-background: #aa40bf;
+      --beak-primary-focus: rgba(212, 125, 228, 0.375);
+    }
+}
+
+[data-theme=dark] {
+    --beak-text-selection-color: rgba(212, 125, 228, 0.1875);
+    --beak-primary: #d47de4;
+    --beak-primary-background: #9236a4;
+    --beak-primary-underline: rgba(212, 125, 228, 0.5);
+    --beak-primary-hover: #e2a3eb;
+    --beak-primary-hover-background: #aa40bf;
+    --beak-primary-focus: rgba(212, 125, 228, 0.375);
+  }
+}

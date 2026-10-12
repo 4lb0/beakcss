@@ -5,13 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Beak CSS — classless demo</title>
     <link rel="stylesheet" href="dist/beak.css">
+    <link id="palette" rel="stylesheet">
     <script>
       function setTheme(theme) {
-        document.documentElement.setAttribute(
-          "data-theme",
-          theme === "auto" ? "" : theme
-        );
         if (theme === "auto") document.documentElement.removeAttribute("data-theme");
+        else document.documentElement.setAttribute("data-theme", theme);
+      }
+      function setPalette(color) {
+        var link = document.getElementById("palette");
+        link.disabled = !color;
+        link.href = color ? "dist/themes/" + color + ".css" : "";
       }
     </script>
   </head>
@@ -38,6 +41,20 @@
         <button onclick="setTheme('light')">Light</button>
         <button onclick="setTheme('dark')">Dark</button>
       </p>
+
+      <label>
+        Palette
+        <select onchange="setPalette(this.value)">
+          <option value="">Default</option>
+          <option>amber</option><option>blue</option><option>cyan</option>
+          <option>fuchsia</option><option>green</option><option>grey</option>
+          <option>indigo</option><option>jade</option><option>lime</option>
+          <option>orange</option><option>pink</option><option>pumpkin</option>
+          <option>purple</option><option>red</option><option>sand</option>
+          <option>slate</option><option>violet</option><option>yellow</option>
+          <option>zinc</option>
+        </select>
+      </label>
 
       <section id="typography">
         <h2>Typography</h2>

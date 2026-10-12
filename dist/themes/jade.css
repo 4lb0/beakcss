@@ -1,0 +1,44 @@
+/*!
+ * Beak CSS theme — jade 🎨
+ * Palette override. Load *after* beak.css.
+ * Generated from Pico CSS v2.1.1 color "jade".
+ */
+@layer beak {
+/**
+ * Color schemes
+ */
+[data-theme=light],
+:root:not([data-theme=dark]),
+:host(:not([data-theme=dark])) {
+    --beak-text-selection-color: rgba(0, 166, 110, 0.25);
+    --beak-primary: #007a50;
+    --beak-primary-background: #007a50;
+    --beak-primary-underline: rgba(0, 122, 80, 0.5);
+    --beak-primary-hover: #005f3d;
+    --beak-primary-hover-background: #006d46;
+    --beak-primary-focus: rgba(0, 166, 110, 0.5);
+  }
+
+@media only screen and (prefers-color-scheme: dark) {
+  :root:not([data-theme]),
+    :host(:not([data-theme])) {
+      --beak-text-selection-color: rgba(0, 180, 120, 0.1875);
+      --beak-primary: #00b478;
+      --beak-primary-background: #007a50;
+      --beak-primary-underline: rgba(0, 180, 120, 0.5);
+      --beak-primary-hover: #00cc88;
+      --beak-primary-hover-background: #00895a;
+      --beak-primary-focus: rgba(0, 180, 120, 0.375);
+    }
+}
+
+[data-theme=dark] {
+    --beak-text-selection-color: rgba(0, 180, 120, 0.1875);
+    --beak-primary: #00b478;
+    --beak-primary-background: #007a50;
+    --beak-primary-underline: rgba(0, 180, 120, 0.5);
+    --beak-primary-hover: #00cc88;
+    --beak-primary-hover-background: #00895a;
+    --beak-primary-focus: rgba(0, 180, 120, 0.375);
+  }
+}

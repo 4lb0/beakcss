@@ -1,0 +1,50 @@
+/*!
+ * Beak CSS theme — sand 🎨
+ * Palette override. Load *after* beak.css.
+ * Generated from Pico CSS v2.1.1 color "sand".
+ */
+@layer beak {
+/**
+ * Color schemes
+ */
+[data-theme=light],
+:root:not([data-theme=dark]),
+:host(:not([data-theme=dark])) {
+    --beak-text-selection-color: rgba(149, 144, 130, 0.25);
+    --beak-primary: #6e6a60;
+    --beak-primary-background: #ccc6b4;
+    --beak-primary-underline: rgba(110, 106, 96, 0.5);
+    --beak-primary-hover: #55524a;
+    --beak-primary-hover-background: #beb8a7;
+    --beak-primary-focus: rgba(149, 144, 130, 0.5);
+    --beak-primary-inverse: #000;
+    --beak-switch-thumb-box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.25);
+  }
+
+@media only screen and (prefers-color-scheme: dark) {
+  :root:not([data-theme]),
+    :host(:not([data-theme])) {
+      --beak-text-selection-color: rgba(163, 158, 143, 0.1875);
+      --beak-primary: #a39e8f;
+      --beak-primary-background: #ccc6b4;
+      --beak-primary-underline: rgba(163, 158, 143, 0.5);
+      --beak-primary-hover: #beb8a7;
+      --beak-primary-hover-background: #dad4c2;
+      --beak-primary-focus: rgba(163, 158, 143, 0.375);
+      --beak-primary-inverse: #000;
+      --beak-switch-thumb-box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.25);
+    }
+}
+
+[data-theme=dark] {
+    --beak-text-selection-color: rgba(163, 158, 143, 0.1875);
+    --beak-primary: #a39e8f;
+    --beak-primary-background: #ccc6b4;
+    --beak-primary-underline: rgba(163, 158, 143, 0.5);
+    --beak-primary-hover: #beb8a7;
+    --beak-primary-hover-background: #dad4c2;
+    --beak-primary-focus: rgba(163, 158, 143, 0.375);
+    --beak-primary-inverse: #000;
+    --beak-switch-thumb-box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.25);
+  }
+}

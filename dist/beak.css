@@ -1,10 +1,11 @@
 @charset "UTF-8";
 /*!
- * Beak CSS 🐦 v0.1.0 — a classless fork of Pico CSS
- * Classless only · no SASS · CSS variables for colors & measures
+ * Beak CSS 🐦 v0.2.0 — a classless fork of Pico CSS
+ * Classless · @layer beak · no SASS · CSS variables for colors and measures
  * Based on Pico CSS ✨ v2.1.1 (https://picocss.com)
  * Copyright 2019-2025 Pico — Copyright 2026 Beak — Licensed under MIT
  */
+@layer beak {
 /**
  * Styles
  */
@@ -607,43 +608,6 @@ body > footer {
   margin-right: auto;
   margin-left: auto;
   padding: var(--beak-block-spacing-vertical) var(--beak-block-spacing-horizontal);
-}
-@media (min-width: 576px) {
-  body > header,
-  body > main,
-  body > footer {
-    max-width: 510px;
-    padding-right: 0;
-    padding-left: 0;
-  }
-}
-@media (min-width: 768px) {
-  body > header,
-  body > main,
-  body > footer {
-    max-width: 700px;
-  }
-}
-@media (min-width: 1024px) {
-  body > header,
-  body > main,
-  body > footer {
-    max-width: 950px;
-  }
-}
-@media (min-width: 1280px) {
-  body > header,
-  body > main,
-  body > footer {
-    max-width: 1200px;
-  }
-}
-@media (min-width: 1536px) {
-  body > header,
-  body > main,
-  body > footer {
-    max-width: 1450px;
-  }
 }
 
 /**
@@ -2457,4 +2421,6 @@ textarea,
     transition-delay: 0s !important;
     transition-duration: 0s !important;
   }
+}
+
 }
