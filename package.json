@@ -35,12 +35,16 @@
     "no-sass",
     "picocss-fork"
   ],
-  "homepage": "https://github.com/USER/beakcss",
+  "homepage": "https://beakcss.dev.ar",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/USER/beakcss.git"
+    "url": "git+https://github.com/4lb0/beakcss.git"
   },
   "bugs": {
-    "url": "https://github.com/USER/beakcss/issues"
+    "url": "https://github.com/4lb0/beakcss/issues"
+  },
+  "author": "4lb0",
+  "publishConfig": {
+    "access": "public"
   }
 }

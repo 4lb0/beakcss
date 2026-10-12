@@ -27,6 +27,7 @@ beakcss/
 │   └── themes/               # tiny palette overrides (load after beak.css)
 │       ├── blue.css  amber.css  red.css  …   (19 colors)
 ├── index.html                # demo / landing (works on GitHub Pages)
+├── CNAME                     # beakcss.dev.ar (GitHub Pages custom domain)
 ├── tools/build.py            # regenerates dist/ from a Pico checkout
 ├── README.md
 ├── LICENSE.md                # MIT (Pico + Beak)
@@ -80,7 +81,7 @@ color:
 
 ```html
 <link rel="stylesheet" href="dist/beak.min.css">
-<link rel="stylesheet" href="dist/themes/blue.min.css">
+<link rel="stylesheet" href="dist/themes/blue.css">
 ```
 
 Available colors: `amber blue cyan fuchsia green grey indigo jade lime orange
