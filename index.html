@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en" data-theme="auto">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Beak CSS — classless demo</title>
+    <link rel="stylesheet" href="dist/beak.css">
+    <script>
+      function setTheme(theme) {
+        document.documentElement.setAttribute(
+          "data-theme",
+          theme === "auto" ? "" : theme
+        );
+        if (theme === "auto") document.documentElement.removeAttribute("data-theme");
+      }
+    </script>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <ul><li><strong>🐦 Beak</strong></li></ul>
+        <ul>
+          <li><a href="#typography">Typography</a></li>
+          <li><a href="#forms">Forms</a></li>
+          <li><a href="#table">Table</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <hgroup>
+        <h1>Beak CSS</h1>
+        <p>A classless fork of Pico CSS — no classes, no SASS, just HTML.</p>
+      </hgroup>
+
+      <p>
+        <button onclick="setTheme('auto')">Auto</button>
+        <button onclick="setTheme('light')">Light</button>
+        <button onclick="setTheme('dark')">Dark</button>
+      </p>
+
+      <section id="typography">
+        <h2>Typography</h2>
+        <p>
+          This is a paragraph with <a href="#">a link</a>, <strong>bold</strong>,
+          <em>italic</em>, <code>inline code</code>, <mark>highlighted</mark>,
+          <ins>inserted</ins> and <del>deleted</del> text.
+        </p>
+        <blockquote>
+          "Yet another minimal CSS framework? Beak is tiny."
+          <footer><cite>— Someone</cite></footer>
+        </blockquote>
+        <pre><code>link rel="stylesheet" href="beak.css"</code></pre>
+      </section>
+
+      <section id="forms">
+        <h2>Forms</h2>
+        <form>
+          <label>
+            Name
+            <input type="text" name="name" placeholder="Ada Lovelace">
+          </label>
+          <label>
+            Email
+            <input type="email" name="email" placeholder="ada@example.com">
+          </label>
+          <label>
+            Role
+            <select name="role">
+              <option>Developer</option>
+              <option>Designer</option>
+              <option>Product</option>
+            </select>
+          </label>
+          <label>
+            <input type="checkbox" name="terms"> I accept the terms
+          </label>
+          <label>
+            <input type="radio" name="plan" checked> Monthly
+          </label>
+          <label>
+            <input type="radio" name="plan"> Yearly
+          </label>
+          <label>
+            <input type="range" min="0" max="100" value="42">
+          </label>
+          <fieldset>
+            <label>
+              <input type="checkbox" role="switch" checked> Enable notifications
+            </label>
+          </fieldset>
+          <button type="submit">Submit</button>
+          <button type="button" role="button">Cancel</button>
+        </form>
+      </section>
+
+      <section id="table">
+        <h2>Table</h2>
+        <figure>
+          <table>
+            <thead>
+              <tr><th>#</th><th>Framework</th><th>Classless</th><th>SASS</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>1</td><td>Beak</td><td>Yes</td><td>No</td></tr>
+              <tr><td>2</td><td>Pico</td><td>Optional</td><td>Yes</td></tr>
+            </tbody>
+          </table>
+        </figure>
+      </section>
+
+      <details>
+        <summary>Why classless?</summary>
+        <p>Because semantic HTML already carries all the meaning you need.</p>
+      </details>
+    </main>
+
+    <footer>
+      <small>Beak CSS 🐦 — fork of Pico CSS — MIT</small>
+    </footer>
+  </body>
+</html>

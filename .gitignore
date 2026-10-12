@@ -1,0 +1,9 @@
+# OS
+.DS_Store
+
+# Local dev server artifacts (bialet dev)
+_db.sqlite3
+_db.sqlite3-*
+
+# Node (only relevant when consumed as a dependency)
+node_modules/

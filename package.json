@@ -1,0 +1,45 @@
+{
+  "name": "beakcss",
+  "version": "0.1.0",
+  "description": "Beak CSS — a classless-only fork of Pico CSS. Pure CSS, no SASS, CSS variables for colors and measures.",
+  "license": "MIT",
+  "style": "dist/beak.min.css",
+  "main": "dist/beak.min.css",
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE.md",
+    "NOTICE.md",
+    "CHANGELOG.md"
+  ],
+  "exports": {
+    ".": "./dist/beak.min.css",
+    "./beak.css": "./dist/beak.css",
+    "./beak.min.css": "./dist/beak.min.css",
+    "./fluid.css": "./dist/beak.fluid.css",
+    "./fluid.min.css": "./dist/beak.fluid.min.css",
+    "./css/*": "./dist/*",
+    "./package.json": "./package.json"
+  },
+  "sideEffects": [
+    "dist/*.css"
+  ],
+  "keywords": [
+    "css",
+    "classless",
+    "semantic",
+    "minimal",
+    "framework",
+    "css-variables",
+    "no-sass",
+    "picocss-fork"
+  ],
+  "homepage": "https://github.com/USER/beakcss",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/USER/beakcss.git"
+  },
+  "bugs": {
+    "url": "https://github.com/USER/beakcss/issues"
+  }
+}
