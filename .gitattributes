@@ -3,3 +3,5 @@
 # Generated outputs — keep them out of diffs/reviews by default
 dist/*.min.css linguist-generated=true
 dist/themes/*.css linguist-generated=true
+dist/themes/full/*.css linguist-generated=true
+llms.txt linguist-generated=true

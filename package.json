@@ -1,12 +1,13 @@
 {
   "name": "beakcss",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Beak CSS — a classless-only fork of Pico CSS. Pure CSS, cascade layers, no SASS, CSS variables for colors and measures.",
   "license": "MIT",
   "style": "dist/beak.min.css",
   "main": "dist/beak.min.css",
   "files": [
     "dist",
+    "llms.txt",
     "README.md",
     "LICENSE.md",
     "NOTICE.md",
@@ -19,6 +20,8 @@
     "./contained.css": "./dist/beak.contained.css",
     "./contained.min.css": "./dist/beak.contained.min.css",
     "./themes/*": "./dist/themes/*.css",
+    "./themes/full/*": "./dist/themes/full/*.css",
+    "./llms.txt": "./llms.txt",
     "./css/*": "./dist/*",
     "./package.json": "./package.json"
   },
@@ -33,7 +36,11 @@
     "framework",
     "css-variables",
     "no-sass",
-    "picocss-fork"
+    "picocss-fork",
+    "themes",
+    "dracula",
+    "catppuccin",
+    "nord"
   ],
   "homepage": "https://beakcss.dev.ar",
   "repository": {

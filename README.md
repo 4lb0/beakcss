@@ -13,7 +13,10 @@ forks. Beak takes it forward as a **pure-CSS, classless** project.
 - **No SASS, no build step, no dependencies** — the CSS you ship is the source.
 - **CSS variables** for every color and measure (`--beak-*`).
 - **Keeps Pico's colors and themes** — light, dark and auto (system), plus the
-  full Pico color palette (19 optional themes).
+  19 Pico color palettes.
+- **24 full-palette themes** — Dracula, Nord, Catppuccin, Tokyo Night, Gruvbox,
+  One Dark, Monokai, Rosé Pine, Solarized, Everforest, Kanagawa and Ayu — plus
+  7 **adaptive** files for the families that have both a light and a dark flavour.
 
 ## Files
 
@@ -24,11 +27,15 @@ beakcss/
 │   ├── beak.min.css          # minified
 │   ├── beak.contained.css    # constrained reading width, @layer beak
 │   ├── beak.contained.min.css
-│   └── themes/               # tiny palette overrides (load after beak.css)
-│       ├── blue.css  amber.css  red.css  …   (19 colors)
+│   └── themes/
+│       ├── blue.css  amber.css  red.css  …   # 19 Pico tints (light/dark aware)
+│       └── full/
+│           ├── dracula.css  nord.css  …      # 24 palettes + 7 adaptive
 ├── index.html                # demo / landing (works on GitHub Pages)
+├── llms.txt                  # generated index for LLMs
 ├── CNAME                     # beakcss.dev.ar (GitHub Pages custom domain)
 ├── tools/build.py            # regenerates dist/ from a Pico checkout
+├── tools/themes.py           # generates the full-palette themes + llms.txt
 ├── README.md
 ├── LICENSE.md                # MIT (Pico + Beak)
 ├── NOTICE.md                 # fork + trademark notice
@@ -73,11 +80,11 @@ the OS via `prefers-color-scheme`).
 <html lang="en" data-theme="dark">
 ```
 
-### Color palettes
+### Tints — Pico's 19 color palettes
 
-Beak ships Pico's color palettes as **tiny override files** (about 1.4 KB each)
-instead of 19 full copies of the framework. Load your base first, then the
-color:
+Tiny override files (about 1.4 KB each) that only swap the accent ramps. They
+stay light/dark aware, so they follow `prefers-color-scheme` exactly like the
+base does. Load your base first, then the color:
 
 ```html
 <link rel="stylesheet" href="dist/beak.min.css">
@@ -86,6 +93,51 @@ color:
 
 Available colors: `amber blue cyan fuchsia green grey indigo jade lime orange
 pink pumpkin purple red sand slate violet yellow zinc`.
+
+### Full palettes — terminal and editor themes
+
+Complete schemes (about 18 KB raw, 2 KB gzipped): background, text, muted
+text, borders, code, forms and shadows. Load one *after* the base, exactly
+like a tint.
+
+```html
+<link rel="stylesheet" href="dist/beak.min.css">
+<link rel="stylesheet" href="dist/themes/full/solarized-auto.css">
+```
+
+| Family | Light | Dark | Adaptive (follows OS) |
+| --- | --- | --- | --- |
+| Dracula | — | `dracula` | — |
+| Nord | `nord-light` \* | `nord` | `nord-auto` |
+| Catppuccin | `catppuccin-latte` | `catppuccin-frappe`, `catppuccin-macchiato`, `catppuccin-mocha` | `catppuccin-auto` (Latte ↔ Mocha) |
+| Tokyo Night | — | `tokyo-night`, `tokyo-night-storm` | — |
+| Gruvbox | `gruvbox-light` | `gruvbox-dark` | `gruvbox-auto` |
+| One Dark | — | `one-dark` | — |
+| Monokai | — | `monokai` | — |
+| Rosé Pine | `rose-pine-dawn` | `rose-pine`, `rose-pine-moon` | `rose-pine-auto` (Dawn ↔ Main) |
+| Solarized | `solarized-light` | `solarized-dark` | `solarized-auto` |
+| Everforest | `everforest-light` | `everforest-dark` | `everforest-auto` |
+| Kanagawa | — | `kanagawa` | — |
+| Ayu | `ayu-light` | `ayu-dark`, `ayu-mirage` | `ayu-auto` (Light ↔ Dark) |
+
+\* Nord only publishes a dark scheme; `nord-light` is Beak's mapping of the
+same palette onto Snow Storm backgrounds.
+
+Three loading modes:
+
+- **Adaptive** (`solarized-auto.css`) — the light flavour fills the light
+  blocks and the dark flavour fills the `prefers-color-scheme` and
+  `[data-theme=dark]` blocks, so both `data-theme` and the OS work. Use these
+  whenever the family has both flavours.
+- **Dark-only** (`dracula.css`) and **light-only** (`solarized-light.css`) —
+  pinned: the same values in all three blocks, so a dark-only scheme never
+  flips to light because the OS is, and `data-theme` has no visible effect.
+  Use these when you want to force one look.
+
+Each full palette derives hover, focus, surfaces, headings and shadows from its
+core colors, and keeps body text and links at WCAG AA (4.5:1) against its own
+background — canonical values are nudged toward black/white only when the
+original palette falls short.
 
 Switch palettes at runtime by swapping that second `<link>`'s `href`, or just
 override the primary variables yourself (see below).
@@ -141,8 +193,9 @@ npm install file:../beakcss     # local
 ```
 
 ```js
-import "beakcss";                    // dist/beak.min.css
-import "beakcss/themes/blue.css";    // optional palette
+import "beakcss";                                // dist/beak.min.css
+import "beakcss/themes/blue.css";                // optional tint
+import "beakcss/themes/full/dracula.css";        // or a full palette
 ```
 
 ### Best practices
@@ -221,16 +274,30 @@ No SASS required — just Python 3 and a checkout of Pico v2.1.1:
 
 ```sh
 git clone https://github.com/picocss/pico /tmp/pico
-python3 tools/build.py /tmp/pico/css
+python3 tools/build.py /tmp/pico/css     # base builds + 19 tints
+python3 tools/themes.py                  # palettes + adaptive + llms.txt
 ```
 
-The script renames `--pico-*` → `--beak-*`, wraps everything in `@layer beak`,
-builds the fluid (default) and contained variants, and generates the color
-override themes (verified to reconstruct each Pico palette exactly).
+`build.py` renames `--pico-*` → `--beak-*`, wraps everything in `@layer beak`,
+builds the fluid (default) and contained variants, and generates the tint
+themes (verified to reconstruct each Pico palette exactly). `themes.py` needs
+no Pico checkout: it renders the full palettes from the palette table at the
+top of the file and refreshes `llms.txt` for LLMs.
+
+## LLM index
+
+`llms.txt` (served at <https://beakcss.dev.ar/llms.txt>) is a compact,
+generated map of the project: what Beak is, how to load it, the two kinds of
+themes, the full theme list and the house rules (no classes, variables over
+values). Point an assistant at that single file instead of the whole repo; it
+stays in sync with the theme table because it is generated.
 
 ## Credit & license
 
 Beak is a fork of **Pico CSS v2.1.1** by the Pico team (https://picocss.com),
 used under the MIT license. Beak keeps Pico's original colors and themes. The
-Pico name and logo are not part of the MIT grant — Beak ships its own name and
-no Pico brand assets. See `LICENSE.md` and `NOTICE.md`.
+full-palette themes reproduce palettes published by their respective projects
+(Dracula, Nord, Catppuccin, Tokyo Night, Gruvbox, One Dark, Monokai, Rosé Pine,
+Solarized, Everforest, Kanagawa, Ayu), all MIT-licensed; each file credits its
+source. The Pico name and logo are not part of the MIT grant — Beak ships its
+own name and no Pico brand assets. See `LICENSE.md` and `NOTICE.md`.

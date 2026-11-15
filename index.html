@@ -11,10 +11,10 @@
         if (theme === "auto") document.documentElement.removeAttribute("data-theme");
         else document.documentElement.setAttribute("data-theme", theme);
       }
-      function setPalette(color) {
+      function setPalette(file) {
         var link = document.getElementById("palette");
-        link.disabled = !color;
-        link.href = color ? "dist/themes/" + color + ".css" : "";
+        link.disabled = !file;
+        link.href = file ? "dist/" + file : "";
       }
     </script>
   </head>
@@ -23,6 +23,7 @@
       <nav>
         <ul><li><strong>🐦 Beak</strong></li></ul>
         <ul>
+          <li><a href="#themes">Themes</a></li>
           <li><a href="#typography">Typography</a></li>
           <li><a href="#forms">Forms</a></li>
           <li><a href="#table">Table</a></li>
@@ -45,18 +46,113 @@
       </p>
 
       <label>
-        Palette
+        Theme
         <select onchange="setPalette(this.value)">
-          <option value="">Default</option>
-          <option>amber</option><option>blue</option><option>cyan</option>
-          <option>fuchsia</option><option>green</option><option>grey</option>
-          <option>indigo</option><option>jade</option><option>lime</option>
-          <option>orange</option><option>pink</option><option>pumpkin</option>
-          <option>purple</option><option>red</option><option>sand</option>
-          <option>slate</option><option>violet</option><option>yellow</option>
-          <option>zinc</option>
+          <option value="">Default (Pico blue)</option>
+          <optgroup label="Adaptive (follows light/dark)">
+            <option value="themes/full/nord-auto.css">Nord (auto)</option>
+            <option value="themes/full/catppuccin-auto.css">Catppuccin (auto)</option>
+            <option value="themes/full/gruvbox-auto.css">Gruvbox (auto)</option>
+            <option value="themes/full/rose-pine-auto.css">Rosé Pine (auto)</option>
+            <option value="themes/full/solarized-auto.css">Solarized (auto)</option>
+            <option value="themes/full/everforest-auto.css">Everforest (auto)</option>
+            <option value="themes/full/ayu-auto.css">Ayu (auto)</option>
+          </optgroup>
+          <optgroup label="Dark palettes">
+            <option value="themes/full/dracula.css">Dracula</option>
+            <option value="themes/full/nord.css">Nord</option>
+            <option value="themes/full/catppuccin-frappe.css">Catppuccin Frappé</option>
+            <option value="themes/full/catppuccin-macchiato.css">Catppuccin Macchiato</option>
+            <option value="themes/full/catppuccin-mocha.css">Catppuccin Mocha</option>
+            <option value="themes/full/tokyo-night.css">Tokyo Night</option>
+            <option value="themes/full/tokyo-night-storm.css">Tokyo Night Storm</option>
+            <option value="themes/full/gruvbox-dark.css">Gruvbox Dark</option>
+            <option value="themes/full/one-dark.css">One Dark</option>
+            <option value="themes/full/monokai.css">Monokai</option>
+            <option value="themes/full/rose-pine.css">Rosé Pine</option>
+            <option value="themes/full/rose-pine-moon.css">Rosé Pine Moon</option>
+            <option value="themes/full/solarized-dark.css">Solarized Dark</option>
+            <option value="themes/full/everforest-dark.css">Everforest Dark</option>
+            <option value="themes/full/kanagawa.css">Kanagawa</option>
+            <option value="themes/full/ayu-dark.css">Ayu Dark</option>
+            <option value="themes/full/ayu-mirage.css">Ayu Mirage</option>
+          </optgroup>
+          <optgroup label="Light palettes">
+            <option value="themes/full/nord-light.css">Nord Light</option>
+            <option value="themes/full/catppuccin-latte.css">Catppuccin Latte</option>
+            <option value="themes/full/gruvbox-light.css">Gruvbox Light</option>
+            <option value="themes/full/rose-pine-dawn.css">Rosé Pine Dawn</option>
+            <option value="themes/full/solarized-light.css">Solarized Light</option>
+            <option value="themes/full/everforest-light.css">Everforest Light</option>
+            <option value="themes/full/ayu-light.css">Ayu Light</option>
+          </optgroup>
+          <optgroup label="Tints (follow light/dark)">
+            <option value="themes/amber.css">amber</option>
+            <option value="themes/blue.css">blue</option>
+            <option value="themes/cyan.css">cyan</option>
+            <option value="themes/fuchsia.css">fuchsia</option>
+            <option value="themes/green.css">green</option>
+            <option value="themes/grey.css">grey</option>
+            <option value="themes/indigo.css">indigo</option>
+            <option value="themes/jade.css">jade</option>
+            <option value="themes/lime.css">lime</option>
+            <option value="themes/orange.css">orange</option>
+            <option value="themes/pink.css">pink</option>
+            <option value="themes/pumpkin.css">pumpkin</option>
+            <option value="themes/purple.css">purple</option>
+            <option value="themes/red.css">red</option>
+            <option value="themes/sand.css">sand</option>
+            <option value="themes/slate.css">slate</option>
+            <option value="themes/violet.css">violet</option>
+            <option value="themes/yellow.css">yellow</option>
+            <option value="themes/zinc.css">zinc</option>
+          </optgroup>
         </select>
       </label>
+
+      <section id="themes">
+        <h2>Themes</h2>
+        <p>
+          There are two kinds, and both are loaded <em>after</em> the base
+          stylesheet — never instead of it.
+        </p>
+        <p>
+          <strong>Tints</strong> (<code>dist/themes/blue.css</code>) are about
+          1.4&nbsp;KB: they swap the accent ramps only and stay light/dark
+          aware, so they follow the OS. <strong>Full palettes</strong>
+          (<code>dist/themes/full/dracula.css</code>) are complete schemes —
+          background, text, borders, code, forms, shadows.
+        </p>
+        <pre><code>&lt;link rel="stylesheet" href="dist/beak.min.css"&gt;
+&lt;link rel="stylesheet" href="dist/themes/full/solarized-auto.css"&gt;</code></pre>
+        <p>
+          Full palettes come in three shapes:
+        </p>
+        <ul>
+          <li>
+            <strong>Adaptive</strong> (<code>solarized-auto.css</code>,
+            <code>nord-auto.css</code>, …) — the light flavour fills the light
+            blocks and the dark flavour fills the
+            <code>prefers-color-scheme</code> and
+            <code>[data-theme="dark"]</code> blocks. Auto / Light / Dark keep
+            working. Use these for families that ship both flavours.
+          </li>
+          <li>
+            <strong>Dark-only</strong> (<code>dracula.css</code>,
+            <code>kanagawa.css</code>, …) and
+            <strong>light-only</strong> (<code>solarized-light.css</code>) —
+            pinned: the same values in all three blocks, so the scheme never
+            flips with the OS and the toggle buttons become inert.
+          </li>
+        </ul>
+        <p>
+          <small>
+            Body text and links stay at WCAG AA (4.5:1) against each palette's
+            own background. Machine-readable index:
+            <a href="llms.txt">llms.txt</a>.
+          </small>
+        </p>
+      </section>
 
       <section id="typography">
         <h2>Typography</h2>

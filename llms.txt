@@ -1,0 +1,126 @@
+# Beak CSS
+
+> Beak CSS is a classless, pure-CSS fork of Pico CSS v2.1.1. It styles plain
+> semantic HTML with no classes, no SASS and no build step. Every token is a
+> CSS custom property named `--beak-*`, and the whole framework ships inside
+> `@layer beak`, so your own CSS always wins without specificity fights.
+
+## Start here
+
+- [README](https://beakcss.dev.ar/README.md): install, usage, variables, theming, regenerating `dist/`.
+- [Demo](https://beakcss.dev.ar/): live classless demo with the theme picker.
+- [Source](https://github.com/4lb0/beakcss): repository, issues, releases.
+- [Changelog](https://github.com/4lb0/beakcss/blob/main/CHANGELOG.md): release history.
+
+## Files
+
+- [beak.min.css](https://beakcss.dev.ar/dist/beak.min.css): full-width build, the default. Use this in apps and dashboards.
+- [beak.contained.min.css](https://beakcss.dev.ar/dist/beak.contained.min.css): same, plus a centered reading column for docs and blogs.
+- [beak.css](https://beakcss.dev.ar/dist/beak.css): unminified, human-readable source.
+- [beak.contained.css](https://beakcss.dev.ar/dist/beak.contained.css): unminified constrained build.
+
+## Usage
+
+```html
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/beakcss/dist/beak.min.css">
+<!-- optional, exactly one theme, after the base: -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/beakcss/dist/themes/full/dracula.css">
+```
+
+- npm: `npm install beakcss`, then `import "beakcss"` (JS bundler) or link `node_modules/beakcss/dist/beak.min.css`.
+- Light, dark and system mode come from the base: `data-theme="light|dark"` on `<html>`, or omit it to follow `prefers-color-scheme`.
+- Load order: base → theme → your CSS. Never edit the shipped files; override the `--beak-*` variables instead.
+
+## Themes
+
+Two kinds, both loaded *after* the base stylesheet:
+
+1. **Tints** (`dist/themes/{name}.css`) — Pico's 19 color palettes. They only
+   swap the accent ramps and stay light/dark aware, so they follow the OS.
+2. **Full palettes** (`dist/themes/full/{name}.css`) — complete schemes with
+   their own background, text, borders, code and form colors. A single-flavour
+   file is *pinned* across light, system and dark, so a dark-only scheme never
+   flips. Families with both flavours also ship an `{family}-auto.css` that
+   follows `prefers-color-scheme` and `data-theme` instead.
+
+Tints: amber, blue, cyan, fuchsia, green, grey, indigo, jade, lime, orange, pink, pumpkin, purple, red, sand, slate, violet, yellow, zinc.
+
+Full palettes:
+
+### Dracula
+
+- [Dracula](https://beakcss.dev.ar/dist/themes/full/dracula.css): dark palette.
+
+### Nord
+
+- [Nord](https://beakcss.dev.ar/dist/themes/full/nord.css): dark palette.
+- [Nord Light](https://beakcss.dev.ar/dist/themes/full/nord-light.css): light palette.
+
+### Catppuccin
+
+- [Catppuccin Latte](https://beakcss.dev.ar/dist/themes/full/catppuccin-latte.css): light palette.
+- [Catppuccin Frappé](https://beakcss.dev.ar/dist/themes/full/catppuccin-frappe.css): dark palette.
+- [Catppuccin Macchiato](https://beakcss.dev.ar/dist/themes/full/catppuccin-macchiato.css): dark palette.
+- [Catppuccin Mocha](https://beakcss.dev.ar/dist/themes/full/catppuccin-mocha.css): dark palette.
+
+### Tokyo Night
+
+- [Tokyo Night](https://beakcss.dev.ar/dist/themes/full/tokyo-night.css): dark palette.
+- [Tokyo Night Storm](https://beakcss.dev.ar/dist/themes/full/tokyo-night-storm.css): dark palette.
+
+### Gruvbox
+
+- [Gruvbox Dark](https://beakcss.dev.ar/dist/themes/full/gruvbox-dark.css): dark palette.
+- [Gruvbox Light](https://beakcss.dev.ar/dist/themes/full/gruvbox-light.css): light palette.
+
+### One Dark
+
+- [One Dark](https://beakcss.dev.ar/dist/themes/full/one-dark.css): dark palette.
+
+### Monokai
+
+- [Monokai](https://beakcss.dev.ar/dist/themes/full/monokai.css): dark palette.
+
+### Rosé Pine
+
+- [Rosé Pine](https://beakcss.dev.ar/dist/themes/full/rose-pine.css): dark palette.
+- [Rosé Pine Moon](https://beakcss.dev.ar/dist/themes/full/rose-pine-moon.css): dark palette.
+- [Rosé Pine Dawn](https://beakcss.dev.ar/dist/themes/full/rose-pine-dawn.css): light palette.
+
+### Solarized
+
+- [Solarized Light](https://beakcss.dev.ar/dist/themes/full/solarized-light.css): light palette.
+- [Solarized Dark](https://beakcss.dev.ar/dist/themes/full/solarized-dark.css): dark palette.
+
+### Everforest
+
+- [Everforest Dark](https://beakcss.dev.ar/dist/themes/full/everforest-dark.css): dark palette.
+- [Everforest Light](https://beakcss.dev.ar/dist/themes/full/everforest-light.css): light palette.
+
+### Kanagawa
+
+- [Kanagawa](https://beakcss.dev.ar/dist/themes/full/kanagawa.css): dark palette.
+
+### Ayu
+
+- [Ayu Dark](https://beakcss.dev.ar/dist/themes/full/ayu-dark.css): dark palette.
+- [Ayu Mirage](https://beakcss.dev.ar/dist/themes/full/ayu-mirage.css): dark palette.
+- [Ayu Light](https://beakcss.dev.ar/dist/themes/full/ayu-light.css): light palette.
+
+### Adaptive (follows light/dark)
+
+- [Nord (auto)](https://beakcss.dev.ar/dist/themes/full/nord-auto.css): light = Nord Light, dark = Nord.
+- [Catppuccin (auto)](https://beakcss.dev.ar/dist/themes/full/catppuccin-auto.css): light = Catppuccin Latte, dark = Catppuccin Mocha.
+- [Gruvbox (auto)](https://beakcss.dev.ar/dist/themes/full/gruvbox-auto.css): light = Gruvbox Light, dark = Gruvbox Dark.
+- [Rosé Pine (auto)](https://beakcss.dev.ar/dist/themes/full/rose-pine-auto.css): light = Rosé Pine Dawn, dark = Rosé Pine.
+- [Solarized (auto)](https://beakcss.dev.ar/dist/themes/full/solarized-auto.css): light = Solarized Light, dark = Solarized Dark.
+- [Everforest (auto)](https://beakcss.dev.ar/dist/themes/full/everforest-auto.css): light = Everforest Light, dark = Everforest Dark.
+- [Ayu (auto)](https://beakcss.dev.ar/dist/themes/full/ayu-auto.css): light = Ayu Light, dark = Ayu Dark.
+
+## Notes for LLMs
+
+- There are no classes. Style the elements themselves: `header`, `main`, `nav`, `section`, `article`, `aside`, `footer`, `figure`, `table`, `form`, `fieldset`, `label`, `input`, `select`, `textarea`, `button`, `details`, `dialog`.
+- Semantic attributes drive components: `role="switch"` on a checkbox renders a switch, `role="button"` styles a link as a button, `<details>` renders an accordion.
+- Colors and measures are variables, not values to hardcode: `--beak-primary`, `--beak-background-color`, `--beak-color`, `--beak-spacing`, `--beak-border-radius`. Full list in the color-scheme blocks of `dist/beak.css`.
+- Themes are additive files inside the same `@layer beak`; import one at a time.
+- `dist/` is generated by `tools/build.py` (base builds) and `tools/themes.py` (full palettes). Do not hand-edit.

@@ -22,7 +22,7 @@ import re
 import sys
 import pathlib
 
-VERSION = "0.2.0"
+VERSION = "0.3.0"
 LAYER = "beak"
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
