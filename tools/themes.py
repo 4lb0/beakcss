@@ -750,8 +750,7 @@ LLMS_HEAD = """\
 
 - [beak.min.css](https://beakcss.dev.ar/dist/beak.min.css): full-width build, the default. Use this in apps and dashboards.
 - [beak.contained.min.css](https://beakcss.dev.ar/dist/beak.contained.min.css): same, plus a centered reading column for docs and blogs.
-- [beak.css](https://beakcss.dev.ar/dist/beak.css): unminified, human-readable source.
-- [beak.contained.css](https://beakcss.dev.ar/dist/beak.contained.css): unminified constrained build.
+- [beak.css](https://beakcss.dev.ar/dist/beak.css) and [beak.contained.css](https://beakcss.dev.ar/dist/beak.contained.css): the same two builds, unminified.
 
 ## Usage
 
@@ -767,23 +766,23 @@ LLMS_HEAD = """\
 
 ## Themes
 
-Two kinds, both loaded *after* the base stylesheet:
+Two kinds, both loaded *after* the base stylesheet. Filenames are
+`dist/themes/{{name}}.css` for tints, `dist/themes/full/{{name}}.css` for full
+palettes.
 
-1. **Tints** (`dist/themes/{{name}}.css`) — Pico's 19 color palettes. They only
-   swap the accent ramps and stay light/dark aware, so they follow the OS.
-2. **Full palettes** (`dist/themes/full/{{name}}.css`) — complete schemes with
-   their own background, text, borders, code and form colors. A single-flavour
-   file is *pinned* across light, system and dark, so a dark-only scheme never
-   flips. Families with both flavours also ship an `{{family}}-auto.css` that
-   follows `prefers-color-scheme` and `data-theme` instead.
+1. **Tints** — Pico's 19 accent-only palettes; each swaps just the accent ramp
+   and still follows the OS light/dark mode. Available: {tints}.
+2. **Full palettes** — complete schemes with their own background, text,
+   borders, code and form colors. A single flavour is *pinned* across light,
+   system and dark, so a dark-only scheme never flips. Families with both
+   flavours also ship a `{{family}}-auto.css` that follows
+   `prefers-color-scheme` and `data-theme`.
 
-Tints: {tints}.
-
-Full palettes:
+Full palettes by family, `(l)` light and `(d)` dark:
 
 {full}
 
-### Adaptive (follows light/dark)
+Adaptive `{{family}}-auto` files, light/dark:
 
 {adaptive}
 
@@ -808,30 +807,20 @@ def write_llms():
     last_family = None
     for t in THEMES:
         if t["family"] != last_family:
-            if lines:
-                lines.append("")
-            lines.append("### " + t["family"])
-            lines.append("")
+            lines.append("- **{}**: ".format(t["family"]))
             last_family = t["family"]
-        lines.append(
-            "- [{}](https://beakcss.dev.ar/dist/themes/full/{}.css): {} palette."
-            .format(t["name"], t["id"], t["mode"])
-        )
+        else:
+            lines[-1] += ", "
+        lines[-1] += "`{}` ({})".format(t["id"], t["mode"][0])
 
-    by_id = {t["id"]: t for t in THEMES}
-    adaptive = [
-        "- [{} (auto)](https://beakcss.dev.ar/dist/themes/full/{}.css): light = {}, dark = {}."
-        .format(
-            p["name"],
-            p["id"],
-            by_id[p["light"]]["name"],
-            by_id[p["dark"]]["name"],
-        )
+    adaptive = " ".join(
+        "`{}` = `{}`/`{}`;".format(p["id"], p["light"], p["dark"])
         for p in ADAPTIVE
-    ]
+    )
+    adaptive = adaptive[:-1] + "."
 
     text = LLMS_HEAD.format(
-        tints=tints, full="\n".join(lines), adaptive="\n".join(adaptive)
+        tints=tints, full="\n".join(lines), adaptive=adaptive
     )
     (ROOT / "llms.txt").write_text(text)
     return "llms.txt"
