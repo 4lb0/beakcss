@@ -56,6 +56,7 @@
   --beak-mark-color: #3c3836;
   --beak-ins-color: #79740e;
   --beak-del-color: #9d0006;
+  --beak-warning: #946110;
   --beak-blockquote-border-color: var(--beak-muted-border-color);
   --beak-blockquote-footer-color: var(--beak-muted-color);
   --beak-button-box-shadow: 0 0 0 rgba(0, 0, 0, 0);
@@ -158,6 +159,7 @@
     --beak-mark-color: #ebdbb2;
     --beak-ins-color: #b8bb26;
     --beak-del-color: #fb4934;
+    --beak-warning: #fabd2f;
     --beak-blockquote-border-color: var(--beak-muted-border-color);
     --beak-blockquote-footer-color: var(--beak-muted-color);
     --beak-button-box-shadow: 0 0 0 rgba(0, 0, 0, 0);
@@ -259,6 +261,7 @@
   --beak-mark-color: #ebdbb2;
   --beak-ins-color: #b8bb26;
   --beak-del-color: #fb4934;
+  --beak-warning: #fabd2f;
   --beak-blockquote-border-color: var(--beak-muted-border-color);
   --beak-blockquote-footer-color: var(--beak-muted-color);
   --beak-button-box-shadow: 0 0 0 rgba(0, 0, 0, 0);

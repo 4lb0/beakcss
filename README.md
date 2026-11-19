@@ -237,12 +237,50 @@ Main color variables:
 | Variable | Purpose |
 | --- | --- |
 | `--beak-primary*` | Accent / interactive elements |
+| `--beak-accent*` | Read-only alias of `--beak-primary*` |
 | `--beak-secondary*` | Secondary buttons/roles |
 | `--beak-contrast*` | High-contrast variant |
 | `--beak-background-color`, `--beak-color` | Page background and text |
 | `--beak-muted-color`, `--beak-muted-border-color` | Muted text and borders |
+| `--beak-success`, `--beak-danger` / `--beak-error`, `--beak-warning`, `--beak-info` | Status colors |
 | `--beak-h1-color` … `--beak-h6-color` | Heading colors |
 | `--beak-form-element-*` | Inputs, selects, textareas |
+
+### Compatibility aliases
+
+Beak also answers to the names other frameworks — and LLMs — tend to reach
+for. They are declared once in the base build, so they follow the active
+light/dark scheme and any loaded theme:
+
+| Alias | Canonical variable |
+| --- | --- |
+| `--beak-accent`, `--beak-accent-color` | `--beak-primary` |
+| `--beak-accent-hover`, `--beak-accent-focus` | `--beak-primary-hover`, `--beak-primary-focus` |
+| `--beak-primary-foreground`, `--beak-accent-foreground` | `--beak-primary-inverse` |
+| `--beak-secondary-foreground` | `--beak-secondary-inverse` |
+| `--beak-text`, `--beak-text-color`, `--beak-foreground`, `--beak-fg` | `--beak-color` |
+| `--beak-bg`, `--beak-bg-color`, `--beak-background` | `--beak-background-color` |
+| `--beak-surface`, `--beak-popover-background` | `--beak-card-background-color` |
+| `--beak-card-foreground`, `--beak-popover-foreground` | `--beak-color` |
+| `--beak-muted`, `--beak-text-muted` | `--beak-muted-color` |
+| `--beak-border` | `--beak-muted-border-color` |
+| `--beak-link-color`, `--beak-link-hover-color` | `--beak-primary`, `--beak-primary-hover` |
+| `--beak-link-decoration` | `--beak-text-decoration` |
+| `--beak-focus-color`, `--beak-focus-ring`, `--beak-ring`, `--beak-ring-color`, `--beak-outline-color` | `--beak-primary-focus` |
+| `--beak-ring-width`, `--beak-focus-ring-width` | `--beak-outline-width` |
+| `--beak-selection-color` | `--beak-text-selection-color` |
+| `--beak-success`, `--beak-danger`, `--beak-error`, `--beak-destructive` | `--beak-ins-color`, `--beak-del-color` |
+| `--beak-info` | `--beak-primary` |
+| `--beak-font`, `--beak-font-sans`, `--beak-font-mono` | `--beak-font-family*` |
+| `--beak-radius` | `--beak-border-radius` |
+| `--beak-shadow` | `--beak-box-shadow` |
+| `--beak-space` | `--beak-spacing` |
+| `--beak-code-bg`, `--beak-card-bg`, `--beak-card-border` | `--beak-code-background-color`, `--beak-card-background-color`, `--beak-card-border-color` |
+| `--beak-input-*`, `--beak-placeholder-color`, `--beak-disabled-opacity` | `--beak-form-element-*` |
+
+Aliases are **read-only**: they resolve to the canonical variable. To customize,
+override the canonical name (e.g. `--beak-primary`, not `--beak-accent`).
+`--beak-warning` is a real color with its own light/dark values, not an alias.
 
 ### Measures
 

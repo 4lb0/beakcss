@@ -59,6 +59,120 @@ THEME_HEADER = (
 
 VAR_RE = re.compile(r"--pico-([a-z0-9-]+)")
 
+# --- compatibility aliases ---------------------------------------------------
+#
+# Common names that other frameworks, Tailwind-shaped mental models and LLMs
+# reach for. Every entry is a *read-only* alias: it resolves to the canonical
+# Beak variable, which remains the single source of truth (and the name themes
+# override). Aliases are declared once in the base build, so they follow the
+# active light/dark scheme and any theme automatically.
+
+ALIASES = [
+    # accent / brand
+    ("--beak-accent", "var(--beak-primary)"),
+    ("--beak-accent-color", "var(--beak-primary)"),
+    ("--beak-accent-hover", "var(--beak-primary-hover)"),
+    ("--beak-accent-focus", "var(--beak-primary-focus)"),
+    ("--beak-primary-color", "var(--beak-primary)"),
+    ("--beak-primary-foreground", "var(--beak-primary-inverse)"),
+    ("--beak-secondary-color", "var(--beak-secondary)"),
+    ("--beak-secondary-foreground", "var(--beak-secondary-inverse)"),
+    ("--beak-accent-foreground", "var(--beak-primary-inverse)"),
+    # text and surfaces
+    ("--beak-text", "var(--beak-color)"),
+    ("--beak-text-color", "var(--beak-color)"),
+    ("--beak-foreground", "var(--beak-color)"),
+    ("--beak-fg", "var(--beak-color)"),
+    ("--beak-bg", "var(--beak-background-color)"),
+    ("--beak-bg-color", "var(--beak-background-color)"),
+    ("--beak-background", "var(--beak-background-color)"),
+    ("--beak-muted", "var(--beak-muted-color)"),
+    ("--beak-text-muted", "var(--beak-muted-color)"),
+    ("--beak-border", "var(--beak-muted-border-color)"),
+    ("--beak-surface", "var(--beak-card-background-color)"),
+    ("--beak-card-foreground", "var(--beak-color)"),
+    ("--beak-popover-background", "var(--beak-card-background-color)"),
+    ("--beak-popover-foreground", "var(--beak-color)"),
+    # links, focus and selection
+    ("--beak-link-color", "var(--beak-primary)"),
+    ("--beak-link-hover-color", "var(--beak-primary-hover)"),
+    ("--beak-link-decoration", "var(--beak-text-decoration)"),
+    ("--beak-focus-color", "var(--beak-primary-focus)"),
+    ("--beak-focus-ring", "var(--beak-primary-focus)"),
+    ("--beak-ring", "var(--beak-primary-focus)"),
+    ("--beak-ring-color", "var(--beak-primary-focus)"),
+    ("--beak-ring-width", "var(--beak-outline-width)"),
+    ("--beak-focus-ring-width", "var(--beak-outline-width)"),
+    ("--beak-outline-color", "var(--beak-primary-focus)"),
+    ("--beak-selection-color", "var(--beak-text-selection-color)"),
+    # status
+    ("--beak-success", "var(--beak-ins-color)"),
+    ("--beak-success-color", "var(--beak-ins-color)"),
+    ("--beak-danger", "var(--beak-del-color)"),
+    ("--beak-danger-color", "var(--beak-del-color)"),
+    ("--beak-error", "var(--beak-del-color)"),
+    ("--beak-error-color", "var(--beak-del-color)"),
+    ("--beak-destructive", "var(--beak-del-color)"),
+    ("--beak-destructive-color", "var(--beak-del-color)"),
+    ("--beak-warning", "#8a6d00"),
+    ("--beak-warning-color", "var(--beak-warning)"),
+    ("--beak-info", "var(--beak-primary)"),
+    ("--beak-info-color", "var(--beak-primary)"),
+    # typography and measures
+    ("--beak-font", "var(--beak-font-family)"),
+    ("--beak-font-sans", "var(--beak-font-family-sans-serif)"),
+    ("--beak-font-mono", "var(--beak-font-family-monospace)"),
+    ("--beak-radius", "var(--beak-border-radius)"),
+    ("--beak-shadow", "var(--beak-box-shadow)"),
+    ("--beak-space", "var(--beak-spacing)"),
+    # code, cards and form controls
+    ("--beak-code-bg", "var(--beak-code-background-color)"),
+    ("--beak-card-bg", "var(--beak-card-background-color)"),
+    ("--beak-card-border", "var(--beak-card-border-color)"),
+    ("--beak-input-background-color", "var(--beak-form-element-background-color)"),
+    ("--beak-input-background", "var(--beak-form-element-background-color)"),
+    ("--beak-input-border-color", "var(--beak-form-element-border-color)"),
+    ("--beak-input-color", "var(--beak-form-element-color)"),
+    ("--beak-input-placeholder-color", "var(--beak-form-element-placeholder-color)"),
+    ("--beak-placeholder-color", "var(--beak-form-element-placeholder-color)"),
+    ("--beak-disabled-opacity", "var(--beak-form-element-disabled-opacity)"),
+]
+
+# `--beak-warning` is a real color (not an alias), so it needs a dark value.
+ALIAS_EXTRA = """\
+@media only screen and (prefers-color-scheme: dark) {
+  :root:not([data-theme]),
+  :host(:not([data-theme])) {
+    --beak-warning: #e6c34d;
+  }
+}
+[data-theme=dark] {
+  --beak-warning: #e6c34d;
+}"""
+
+ALIAS_EXTRA_MIN = (
+    "@media only screen and (prefers-color-scheme:dark){"
+    ":root:not([data-theme]),:host(:not([data-theme])){--beak-warning:#e6c34d}}"
+    "[data-theme=dark]{--beak-warning:#e6c34d}"
+)
+
+
+def alias_block() -> str:
+    decls = "\n".join(f"  {name}: {value};" for name, value in ALIASES)
+    return (
+        "/*!\n"
+        " * Compatibility aliases — common names from other frameworks and LLMs.\n"
+        " * Read-only: override the canonical variable, not the alias.\n"
+        " */\n"
+        f":root,\n:host {{\n{decls}\n}}\n"
+        f"{ALIAS_EXTRA}"
+    )
+
+
+def alias_block_min() -> str:
+    decls = ";".join(f"{name}:{value}" for name, value in ALIASES)
+    return f":root,:host{{{decls}}}{ALIAS_EXTRA_MIN}"
+
 
 def strip_leading(css: str) -> str:
     """Remove a leading @charset and the leading banner comment (/*! ... */)."""
@@ -82,11 +196,13 @@ def layered(css: str) -> str:
 
 
 def build_base(pico_css: pathlib.Path, src: str, out: str):
-    body = rename(strip_leading((pico_css / src).read_text()))
+    body = rename(strip_leading((pico_css / src).read_text())).rstrip()
+    body += "\n\n" + alias_block() + "\n"
 
     # minified variant (Pico ships it already minified)
     min_src = src.replace(".css", ".min.css")
-    min_body = rename(strip_leading((pico_css / min_src).read_text()))
+    min_body = rename(strip_leading((pico_css / min_src).read_text())).rstrip()
+    min_body += alias_block_min()
     min_out = out.replace(".css", ".min.css")
 
     (DIST / out).write_text(

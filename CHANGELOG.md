@@ -5,6 +5,19 @@ All notable changes to Beak CSS are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [Unreleased]
+
+### Added
+
+- **Compatibility aliases** in every base build: `--beak-accent`,
+  `--beak-text-color`, `--beak-bg`, `--beak-link-color`, `--beak-success`,
+  `--beak-danger` / `--beak-error`, `--beak-warning`, `--beak-info`,
+  `--beak-font`, `--beak-radius`, `--beak-shadow`, `--beak-space` and more.
+  They resolve to the canonical `--beak-*` variable and are read-only, so CSS
+  written against common naming conventions keeps working.
+- `--beak-warning`, a real status color with light/dark values in the base and
+  in every full palette.
+
 ## [0.3.0] - 2026-11-15
 
 ### Added
